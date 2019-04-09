@@ -1,0 +1,41 @@
+{extend name="base" /}
+{block name="main"}
+<style>
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle!important;
+        cursor: pointer;
+    }
+</style>
+<div style="padding: 15px;">
+
+    <form action="" method="post" >
+        <label>新建项目</label>
+        <button type="submit" class="btn btn-default center-block" style="float: right;margin-top: 4px;margin-right: 15px;">新建</button>
+        <div style="padding-left: 15px;">
+            <div class="form-group">
+                <label for="name" style="padding-top: 10px;padding-bottom: 10px;">名称</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="输入名称">
+            </div>
+            <div class="form-group">
+                <label for="introduce" style="padding-top: 10px;padding-bottom: 10px;">简介</label>
+                <input type="text" class="form-control" name="introduce" id="introduce" placeholder="输入名称">
+            </div>
+        </div>
+    </form>
+    <br>
+    <label>管理项目</label>
+    <table class="table">
+        <tr><th>id</th><th>项目名</th><th>简介</th><th >操作</th></tr>
+        {volist name="prolist" id="vo"}
+        <tr><td>{$vo['pro_id']}</td><td>{$vo['pro_name']}</td><td>{$vo['pro_introduce']}</td>
+            <td >
+                <div class="btn-group" >
+                    <a href="/admin/article/editp?id={$vo['pro_id']}" class="btn btn-default ">编辑</a><a class="btn btn-default " href="/admin/article/delp?id={$vo['pro_id']}" >删除</a>
+                 </div>
+            </td>
+        </tr>
+        {/volist}
+    </table>
+</div>
+{/block}}

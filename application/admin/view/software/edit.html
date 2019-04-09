@@ -1,0 +1,46 @@
+{extend name="base" /}
+{block name="main"}
+<form role="form" style="margin-top: 15px;" enctype="multipart/form-data" method="post">
+    <label for="container">详细说明</label>
+    <div>
+        <!-- 加载编辑器的容器 -->
+        <script id="container" name="info" type="text/plain">
+            {$info['soft_info']}
+        </script>
+        <!-- 配置文件 -->
+        <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+        <!-- 编辑器源码文件 -->
+        <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
+        <!-- 实例化编辑器 -->
+        <script type="text/javascript">
+            var ue = UE.getEditor('container');
+        </script>
+    </div>
+    <div id="form">
+        <br>
+        <div class="form-group">
+            <label for="ico">图标</label>
+            <img style="height: 40px;padding: 5px;" src="/{$info['soft_img']}" alt="">
+            <input type="file"  name="ico" id="ico" placeholder="平台、大小等" >
+        </div>
+        <div class="form-group">
+            <label for="url">下载地址</label>
+            <input type="text" class="form-control" name="url" value=" {$info['soft_url']}" id="url" placeholder="下载地址" required>
+        </div>
+        <div class="form-group">
+            <label for="name">名称</label>
+            <input type="text" class="form-control" value=" {$info['soft_name']}" name="name" id="name" placeholder="输入名称" required>
+        </div>
+        <div class="form-group">
+            <label for="introduce">简介</label>
+            <input type="text" class="form-control" value="{$info['soft_introduce']}" name="introduce" id="introduce" placeholder="简单介绍">
+        </div>
+        <div class="form-group">
+            <label for="about">平台</label>
+                <input type="text" class="form-control" value="{$info['soft_about']}" name="about" id="about" placeholder="平台">
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-default center-block">提交</button>
+</form>
+{/block}}

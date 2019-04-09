@@ -1,0 +1,17 @@
+{extend name="base" /}
+{block name="main"}
+<div style="width: 100%;text-align: center;padding-top: 15px;"><strong style="font-size: 115%;"> {$info['spoof_name']}</strong></div>
+<div style="padding: 10px;">
+    <label >参数 : </label>
+    <div style="width: 100%;padding:0 15px 15px 15px;">
+        <label>名称 : </label> {$info['spoof_name']} <br>
+        <label>关于 : </label> {$info['spoof_about']} <br>
+        <label>简介 : </label> {$info['spoof_introduce']} <br>
+        <label>下载 : </label> {$info['spoof_url']}
+    </div>
+    <label >更多 : </label>
+    <div style="width: 100%;padding: 15px;">
+        {$info['spoof_info']}
+    </div>
+</div>
+{/block}}

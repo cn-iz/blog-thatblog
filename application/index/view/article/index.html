@@ -1,0 +1,54 @@
+{extend name="base" /}
+{block name="main"}
+<style>
+    @media screen and (max-device-width: 760px) {
+        #sub{
+            width: 100%;
+        }
+        #sub div{
+            width: 100%;
+        }
+    }
+</style>
+<script>
+    var f=function (id) {
+        window.location.href="{:url('index/article/info')}?articid="+id;
+    }
+    var subt=function () {
+        $('#sub').submit();
+    }
+</script>
+<link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+<script src="/static/js/bootstrap-select.min.js"></script>
+<form id="sub"  style="margin-top: 10px;padding-left: 20px;">
+
+    <select  class="selectpicker" onchange="subt()" name="pro">
+        <option value="all">全部</option>
+        {volist name='prolist' id='vo'}
+        <option class="full" value="{$vo['pro_id']}" {if($id==$vo['pro_id'])} selected {/if} >{$vo['pro_name']}</option>
+        {/volist}
+    </select>
+</form>
+<div style="padding: 15px 15px 0px 15px;min-height: 60vh;">
+    <table class="table table-striped table-hover" style="margin-bottom: 0px;">
+        <!--<tr><th>民称</th><th>时间</th><th>操作</th></tr>-->
+        {volist name='info' id='vo'}
+        <tr  style="width: 100%;" onclick="info({$vo['art_id']})">
+            <td style="text-align: left">
+                <span style="color: #444444;">{$vo['art_name']}</span>
+            </td>
+            <td>   <span style="color: #999999;">{:substr($vo['create_time'],0,10)}</span></td>
+        </tr>
+        {/volist}
+
+    </table>
+</div>
+{$info->render()}
+
+<script>
+    var info=function (id) {
+        window.location.href="{:url('index/article/info')}"+"?id="+id;
+    }
+</script>
+{/block}}
+

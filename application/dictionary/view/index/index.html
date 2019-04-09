@@ -1,0 +1,143 @@
+{extend name="base" /}
+{block name="main"}
+<style>
+    #in{
+        border: 0px;
+        resize:none;
+        flex: 1;
+        height: 40%;
+    }
+    #in:focus{
+        border: none;
+        outline: none;
+    }
+    .input_1{
+        height: 50px;
+        width: 100%;
+        display: flex;
+    }
+    .input{
+        min-height: 130px;
+        border: #2aabd2 1px solid;
+    }
+    .x{
+        width: 16px;
+        height: 16px;
+        margin: 10px 5px;
+        border-radius: 8px;
+    }
+    .x:hover{
+        background: #cccccc;
+    }
+    #alternative{
+        /*font-weight: normal;*/
+        font-size: 13px;
+    }
+    #alternative div{
+        padding: 4px;
+        background:#f8fbff;
+        white-space:nowrap;
+        overflow:hidden;
+        text-indent: inherit;
+        color: #9a9a9a;
+        font-weight: normal;
+    }
+     #alternative div:hover{
+         background:#eef2fd;
+         color: #333333;
+     }
+    .al_1{
+        margin-right: 10px;
+    }
+</style>
+<script>
+    $(function () {
+        var w=$('#f').width()
+        $('.input').css('width',w+'px')
+    })
+    function clea() {
+        $('#in').val('')
+        $('#alternative').html('')
+    }
+    function ch() {
+        var inval=$('#in').val()
+        var url='http://dict-mobile.iciba.com/interface/index.php?c=word&m=getsuggest&nums=10&client=6&is_need_mean=1'
+        $.ajax({
+            url: url,
+            type: 'GET',
+            data:{
+                word:inval
+            },
+            dataType: 'JSONP',//here
+            success: function (data) {
+                console.log(data)
+                if(data.status==1) {
+                    var l = data.message.length < 4 ? data.message.length : 4
+                    var mes = data.message
+                    var inn = ''
+                    for (i = 0; i < l; i++) {
+                        inn += '<div onclick="fy(\'' + mes[i].key + '\')"><span class="al_1">' + mes[i].key + '</span><span class="al_2">' + mes[i].means[0].part + ' ' + mes[i].means[0].means + '</span></div>'
+                    }
+                    $('#alternative').html(inn)
+                }else{
+                    $('#alternative').html('')
+                    if(data.status!=0){
+                        fy(inval);
+                    }
+                }
+            }
+        });
+    }
+    function  bdfy(inval) {
+        var url='/dictionary/api/bdapi'
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data:{
+                q:inval
+            },
+            dataType: 'JSON',//here
+            success: function (data) {
+                console.log(data)
+
+            }
+        });
+    }
+    function fy(p) {
+        var url='http://www.iciba.com/index.php?a=getWordMean&c=search&list=1%2C2%2C3%2C4%2C5%2C8%2C9%2C10%2C12%2C13%2C14%2C18%2C21%2C22%2C3003%2C3005'
+        $.ajax({
+            url: url,
+            type: 'GET',
+            data:{
+                word:p
+            },
+            dataType: 'JSONP',//here
+            success: function (data) {
+                console.log(data)
+
+            }
+        });
+    }
+</script>
+<div class="col-md-5">
+    <form action="" id="f">
+        <label for="in">输入中文或英文</label>
+        <label for="in">
+            <div class="input">
+                <div class="input_1">
+                    <textarea name="" id="in" placeholder="输入中文或英文" onkeyup="ch()"></textarea>
+                    <img onclick="clea()" src="/static/imgs/x.png" class="x">
+                </div>
+                <div id="alternative">
+
+                </div>
+            </div>
+        </label>
+        <button>翻译</button><button>标记</button>
+    </form>
+</div>
+<div class="col-md-7">
+
+</div>
+
+{/block}}

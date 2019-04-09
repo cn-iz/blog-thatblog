@@ -1,0 +1,36 @@
+{extend name="base" /}
+{block name="main"}
+<style>
+
+    .list_img{
+        float: left;
+        width: 40px;
+        padding: 0 15px;
+    }
+</style>
+<div style="padding: 15px 15px 0px 15px;min-height: 60vh;">
+<table class="table">
+    {volist name='info' id='vo' key='k' }
+    <tr  style="width: 100%;" onclick="info({$vo['spoof_id']})">
+        <td width="70px"><img class="list_img" src="/{$vo['spoof_img']}" alt=""></td>
+        <td > <strong >{$vo['spoof_name']}</strong></td>
+        <td class="phonehid">
+           {$vo['spoof_introduce']}
+        </td >
+        <td class="phonehid">{$vo['spoof_about']}</td>
+        <td><div class="btn-group"><a href="/admin/spoof/edit?id={$vo['spoof_id']}" class="btn ">修改</a> <a href="{$vo['spoof_url']}" target="_blank" class="btn " target="_blank">下载</a><a href="/admin/spoof/del?id={$vo['spoof_id']}" class="btn ">删除</a></div></td>
+    </tr>
+    {/volist}
+</table>
+</div>
+{$info->render()}
+<script>
+    var info=function (id) {
+        window.location.href="{:url('admin/spoof/info')}"+"?id="+id;
+    }
+</script>
+{/block}}
+
+{block name="btn"}
+<div style="float: right;height: 23px;margin-right: 10px;"><a href="/admin/spoof/add"><img style="height: 100%;margin-right: 15px;" src="/static/imgs/jia4.png" alt=""></a></div>
+{/block}}

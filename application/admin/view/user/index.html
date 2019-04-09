@@ -1,0 +1,44 @@
+{extend name="base" /}
+{block name="main"}
+<style>
+    #cent{
+        margin-top: 5vh;
+    }
+    @media only screen and (min-width: 0px) and (max-width: 720px) {
+        #cent{
+            margin-top: 0;
+        }
+        .my-block{
+            min-height: calc(100vh - 50px);
+        }
+    }
+    .main{
+        background: none;border-radius: 0px;padding: 0px;min-height: 0px;
+    }
+    #ro{
+        font-size: 105%;
+        line-height: 26px; background: none;border-radius: 0px;padding:0px;padding-left:0px;
+    }
+</style>
+<div class="center" id="cent" >
+    <div class="col-md-2"></div>
+    <div  class="col-md-8 my-block " style=" background: #222;box-shadow:  -3px 3px 3px  #333;" >
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <img class="center-block" src="/static/logo4.png" style="width: 100px; text-align: center;margin-top: 9vh;" alt="">
+            <form class="bs-example bs-example-form" role="form" method="post" style="padding-bottom: 9vh;">
+                <div class="form-group" style="margin-top: 10vh;">
+                    <label for="email">用  户：</label>
+                    <input type="text" class="form-control" name="name" id="email" placeholder="" required>
+                </div>
+                <div class="form-group" style="margin-top: 5vh;">
+                    <label for="password">密     码：</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="" required>
+                </div>
+                <div > <a href="" style="text-decoration: none;color: #aaaaaa;">找回密码？</a></div>
+                <button type="submit" class="btn btn-default center-block" style="margin-top: 5vh; min-width: 100px;">登陆</button>
+            </form>
+        </div>
+    </div>
+</div>
+{/block}}

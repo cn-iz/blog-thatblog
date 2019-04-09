@@ -1,0 +1,41 @@
+{extend name="base" /}
+{block name="main"}
+<link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+<script src="/static/js/bootstrap-select.min.js"></script>
+<form role="form"   method="post">
+
+
+    <label for="container" style="padding-top: 10px;">内容</label>
+    <div>
+        <!-- 加载编辑器的容器 -->
+        <script id="container" name="info" type="text/plain">
+            {$info['art_info']}
+        </script>
+        <!-- 配置文件 -->
+        <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+        <!-- 编辑器源码文件 -->
+        <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
+        <!-- 实例化编辑器 -->
+        <script type="text/javascript">
+            var ue = UE.getEditor('container');
+        </script>
+    </div>
+    <div >
+        <div class="form-group">
+            <label for="name" style="padding-top: 10px;padding-bottom: 10px;">名称</label>
+            <input type="text" class="form-control" value="{$info['art_name']}" name="name" id="name" placeholder="输入名称">
+        </div>
+    </div>
+    <div >
+        <div class="form-group">
+            <label for="pro" style="padding-top: 10px;padding-bottom: 10px;">项目</label><br>
+            <select  class="selectpicker" onchange="subt()" id="pro" name="pro">
+                {volist name='prolist' id='vo'}
+                <option class="full"  value="{$vo['pro_id']}" {if($info['pro_id']==$vo['pro_id'])}selected {/if} >{$vo['pro_name']}</option>
+                {/volist}
+            </select>
+            <button type="submit" class="btn btn-default center-block" style="float: right;margin-top: 4px;margin-right: 15px;">提交</button>
+        </div>
+    </div>
+</form>
+{/block}}
