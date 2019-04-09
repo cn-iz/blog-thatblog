@@ -1,3 +1,7 @@
 *.php linguist-language=thinkPhp
 *.js linguist-language=thinkPhp
 *.html linguist-language=thinkPhp
+.idea
+composer.lock
+*.log
+thinkphp
