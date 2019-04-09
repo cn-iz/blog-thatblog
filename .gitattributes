@@ -1,6 +1,6 @@
-*.php linguist-language=thinkPhp
-*.js linguist-language=thinkPhp
-*.html linguist-language=thinkPhp
+*.php linguist-language=php
+*.js linguist-language=php
+*.html linguist-language=php
 .idea
 composer.lock
 *.log
